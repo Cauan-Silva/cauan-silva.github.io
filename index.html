@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Cauan Silva · Sistemas para pequenos negócios</title>
+    <title>Silva Code · Sistemas para pequenos negócios</title>
     <meta
       name="description"
       content="Agendamento online, controle de estoque, automações, sites e sistemas sob medida para pequenos negócios. Desenvolvedor em Santa Catarina."
@@ -12,17 +12,16 @@
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="pt_BR" />
     <meta property="og:url" content="https://cauan-silva.github.io/" />
-    <meta property="og:site_name" content="Cauan Silva" />
-    <meta property="og:title" content="Cauan Silva · Sistemas para pequenos negócios" />
+    <meta property="og:site_name" content="Silva Code" />
+    <meta property="og:title" content="Silva Code · Sistemas para pequenos negócios" />
     <meta property="og:description" content="Agendamento online, controle de estoque, automações, sites e sistemas sob medida." />
     <meta property="og:image" content="https://cauan-silva.github.io/imagens/compartilhar.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Cauan Silva: sistemas que tiram o seu negócio do caderno" />
+    <meta property="og:image:alt" content="Silva Code: sistemas que tiram o seu negócio do caderno" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content="https://cauan-silva.github.io/imagens/compartilhar.jpg" />
     <meta name="theme-color" content="#0a1428" />
-    <link rel="icon" href="icone.svg" type="image/svg+xml" />
     <link rel="icon" href="icone-32.png" type="image/png" sizes="32x32" />
     <link rel="apple-touch-icon" href="icone-180.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -46,10 +45,12 @@
       {
         "@context": "https://schema.org",
         "@type": "ProfessionalService",
-        "name": "Cauan Silva · Desenvolvimento de software",
+        "name": "Silva Code",
+        "alternateName": "Silva Code · Cauan Silva",
         "url": "https://cauan-silva.github.io/",
         "image": "https://cauan-silva.github.io/imagens/compartilhar.jpg",
         "logo": "https://cauan-silva.github.io/icone-512.png",
+        "slogan": "Ideias, código, resultados",
         "description": "Agendamento online, controle de estoque, automações, sites e sistemas sob medida para pequenos negócios.",
         "telephone": "+55 48 99649-1721",
         "email": "anacauansantos@gmail.com",
@@ -70,11 +71,11 @@
         --papel-2: #17264a; /* superfícies discretas */
         --cartao: #101d3b; /* agenda e faixa de contato */
         --tinta: #eef2fb; /* texto */
-        --tinta-escura: #0d1730; /* texto sobre o amarelo */
+        --tinta-escura: #04121f; /* texto sobre o amarelo */
         --pinho: #8db8ff; /* destaques em texto e linhas */
         --pinho-escuro: #060c1b;
-        --marca: #ffd84d;
-        --marca-clara: #ffe27a;
+        --marca: #1fb6ff; /* ciano do logo */
+        --marca-clara: #66d0ff;
         --grafite: #a8b5d1; /* texto secundário */
         --linha: #23345e;
         --branco: #fdfefc;
@@ -170,8 +171,22 @@
         font: 700 1.15rem/1 'Familjen Grotesk', sans-serif;
         text-decoration: none;
       }
-      .assinatura svg {
+      .assinatura img {
         flex: none;
+        display: block;
+      }
+      .assinatura__icone {
+        width: 34px;
+        height: auto;
+      }
+      .assinatura__nome {
+        width: 152px;
+        height: auto;
+      }
+      @media (max-width: 380px) {
+        .assinatura__nome {
+          width: 124px;
+        }
       }
       .topo nav {
         display: flex;
@@ -503,7 +518,7 @@
         color: var(--tinta-escura);
       }
       .fluxo li:last-child span:last-child {
-        color: #4a4220;
+        color: #0b2a3f;
       }
 
       /* como funciona: é uma sequência de verdade, então tem números */
@@ -953,7 +968,7 @@
         transform: translateX(6px);
       }
       .anima .fluxo li.agora span:last-child {
-        color: #4a4220;
+        color: #0b2a3f;
       }
       .botao {
         transition:
@@ -966,7 +981,7 @@
       }
       .botao--whats:hover,
       .botao--cheio:hover {
-        box-shadow: 0 10px 28px -10px rgb(255 216 77 / 0.65);
+        box-shadow: 0 10px 28px -10px rgb(31 182 255 / 0.7);
       }
       .botao:active {
         transform: translateY(0) scale(0.98);
@@ -1044,13 +1059,9 @@
     <div class="luz" aria-hidden="true"></div>
     <header class="barra-topo" id="barra-topo">
       <div class="faixa topo">
-      <a class="assinatura" href="#inicio" aria-label="Cauan Silva, início">
-        <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true">
-          <rect width="30" height="30" rx="8" fill="#2b4fd8" />
-          <path d="M8 11h14M8 15h14M8 19h8" stroke="#fdfefc" stroke-width="2" stroke-linecap="round" />
-          <rect x="18" y="17" width="5" height="5" rx="1.2" fill="#ffd84d" />
-        </svg>
-        Cauan Silva
+      <a class="assinatura" href="#inicio" aria-label="Silva Code, início">
+        <img class="assinatura__icone" src="imagens/logo-icone.webp" alt="" width="34" height="36" />
+        <img class="assinatura__nome" src="imagens/logo-nome.webp" alt="Silva Code" width="152" height="12" />
       </a>
       <nav aria-label="Seções">
         <a href="#servicos">O que eu faço</a>
@@ -1394,7 +1405,7 @@
     </div>
 
     <footer class="faixa rodape">
-      <span>Cauan Silva, Santa Catarina</span>
+      <span>Silva Code, de Cauan Silva. Ideias, código, resultados.</span>
       <nav aria-label="Redes">
         <a href="https://github.com/Cauan-Silva">GitHub</a>
         <a href="https://www.linkedin.com/in/cauan-da-silva-dos-santos-b9649a267/">LinkedIn</a>
