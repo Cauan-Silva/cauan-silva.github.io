@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cauan-silva.github.io/sitemap.xml
