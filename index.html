@@ -11,7 +11,7 @@
     <meta property="og:title" content="Cauan Silva · Sistemas para pequenos negócios" />
     <meta property="og:description" content="Agendamento online, controle de estoque, automações, sites e sistemas sob medida." />
     <meta property="og:image" content="imagens/prosa.webp" />
-    <meta name="theme-color" content="#1f4b3e" />
+    <meta name="theme-color" content="#0a1428" />
     <link rel="icon" href="icone.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -29,18 +29,21 @@
     </script>
     <style>
       :root {
-        --papel: #f3f5f1;
-        --papel-2: #e9eee8;
-        --tinta: #16211c;
-        --pinho: #1f4b3e;
-        --pinho-escuro: #143329;
+        --papel: #0a1428; /* fundo */
+        --papel-2: #17264a; /* superfícies discretas */
+        --cartao: #101d3b; /* agenda e faixa de contato */
+        --tinta: #eef2fb; /* texto */
+        --tinta-escura: #0d1730; /* texto sobre o amarelo */
+        --pinho: #8db8ff; /* destaques em texto e linhas */
+        --pinho-escuro: #060c1b;
         --marca: #ffd84d;
-        --grafite: #56665e;
-        --linha: #d3dbd4;
+        --marca-clara: #ffe27a;
+        --grafite: #a8b5d1; /* texto secundário */
+        --linha: #23345e;
         --branco: #fdfefc;
         --raio: 14px;
         --largura: 1120px;
-        color-scheme: light;
+        color-scheme: dark;
       }
       * {
         box-sizing: border-box;
@@ -145,19 +148,14 @@
         text-decoration: none;
         cursor: pointer;
       }
-      .botao--whats {
-        background: var(--pinho);
-        color: var(--branco);
-      }
-      .botao--whats:hover {
-        background: var(--pinho-escuro);
-      }
+      .botao--whats,
       .botao--cheio {
-        background: var(--pinho);
-        color: var(--branco);
+        background: var(--marca);
+        color: var(--tinta-escura);
       }
+      .botao--whats:hover,
       .botao--cheio:hover {
-        background: var(--pinho-escuro);
+        background: var(--marca-clara);
       }
       .botao--leve {
         background: transparent;
@@ -201,9 +199,9 @@
 
       /* a agenda de demonstração: o elemento marcante da página */
       .agenda {
-        background: var(--branco);
+        background: var(--cartao);
         border-radius: 22px;
-        box-shadow: 0 1px 0 var(--linha), 0 24px 48px -28px rgb(20 51 41 / 0.45);
+        box-shadow: inset 0 0 0 1px var(--linha), 0 30px 60px -30px rgb(0 0 0 / 0.7);
         padding: 1.4rem 1.4rem 1.2rem;
       }
       .agenda__topo {
@@ -264,13 +262,13 @@
         cursor: pointer;
       }
       .agenda__livre:hover {
-        background: rgb(31 75 62 / 0.06);
+        background: rgb(141 184 255 / 0.1);
       }
       .agenda__reservado {
         padding: 0.55rem 0.8rem;
         border-radius: 10px;
         background: var(--marca);
-        color: var(--tinta);
+        color: var(--tinta-escura);
         animation: carimbo 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.3);
       }
       .agenda__reservado small {
@@ -360,7 +358,7 @@
         border-radius: var(--raio);
         overflow: hidden;
         background: var(--pinho-escuro);
-        box-shadow: 0 20px 40px -30px rgb(20 51 41 / 0.6);
+        box-shadow: inset 0 0 0 1px var(--linha), 0 24px 48px -30px rgb(0 0 0 / 0.8);
       }
       .projeto__imagem img {
         width: 100%;
@@ -370,7 +368,7 @@
         display: grid;
         place-items: center;
         padding: 1.5rem;
-        background: #10170f;
+        background: #070e1d;
       }
       .projeto__imagem--estreita img {
         max-width: 420px;
@@ -427,7 +425,7 @@
         display: grid;
         gap: 0.55rem;
         background: var(--pinho-escuro);
-        color: #e7efe9;
+        color: #e8eefb;
       }
       .fluxo li {
         display: flex;
@@ -443,14 +441,14 @@
       }
       .fluxo li span:last-child {
         font-size: 0.92rem;
-        color: #b8c9bf;
+        color: #b3c0dd;
       }
       .fluxo li:last-child {
         background: var(--marca);
-        color: var(--tinta);
+        color: var(--tinta-escura);
       }
       .fluxo li:last-child span:last-child {
-        color: #3d4a36;
+        color: #4a4220;
       }
 
       /* como funciona: é uma sequência de verdade, então tem números */
@@ -530,7 +528,7 @@
 
       /* contato */
       .contato {
-        background: var(--pinho);
+        background: var(--cartao);
         color: var(--branco);
         border-top: 0;
       }
@@ -539,7 +537,7 @@
         max-width: 18ch;
       }
       .contato .intro {
-        color: #cfe0d6;
+        color: #c6d2ee;
       }
       .contato .acoes {
         display: flex;
@@ -547,13 +545,7 @@
         gap: 0.75rem;
         margin-top: 2rem;
       }
-      .contato .botao--whats {
-        background: var(--marca);
-        color: var(--tinta);
-      }
-      .contato .botao--whats:hover {
-        background: #ffe27a;
-      }
+      
       .contato .botao--leve {
         color: var(--branco);
         box-shadow: inset 0 0 0 1.5px rgb(255 255 255 / 0.4);
@@ -589,7 +581,7 @@
     <header class="faixa topo">
       <a class="assinatura" href="#inicio" aria-label="Cauan Silva, início">
         <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true">
-          <rect width="30" height="30" rx="8" fill="#1f4b3e" />
+          <rect width="30" height="30" rx="8" fill="#2b4fd8" />
           <path d="M8 11h14M8 15h14M8 19h8" stroke="#fdfefc" stroke-width="2" stroke-linecap="round" />
           <rect x="18" y="17" width="5" height="5" rx="1.2" fill="#ffd84d" />
         </svg>
