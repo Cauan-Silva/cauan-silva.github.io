@@ -1,0 +1,906 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cauan Silva · Sistemas para pequenos negócios</title>
+    <meta
+      name="description"
+      content="Agendamento online, controle de estoque, automações, sites e sistemas sob medida para pequenos negócios. Desenvolvedor em Santa Catarina."
+    />
+    <meta property="og:title" content="Cauan Silva · Sistemas para pequenos negócios" />
+    <meta property="og:description" content="Agendamento online, controle de estoque, automações, sites e sistemas sob medida." />
+    <meta property="og:image" content="imagens/prosa.webp" />
+    <meta name="theme-color" content="#1f4b3e" />
+    <link rel="icon" href="icone.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Instrument+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      // ===== Seus contatos: preencha aqui =====
+      // WhatsApp com DDI e DDD, só números (ex.: 5548999998888). E-mail que vai aparecer no site.
+      const CONTATO = {
+        whatsapp: '',
+        email: '',
+      }
+    </script>
+    <style>
+      :root {
+        --papel: #f3f5f1;
+        --papel-2: #e9eee8;
+        --tinta: #16211c;
+        --pinho: #1f4b3e;
+        --pinho-escuro: #143329;
+        --marca: #ffd84d;
+        --grafite: #56665e;
+        --linha: #d3dbd4;
+        --branco: #fdfefc;
+        --raio: 14px;
+        --largura: 1120px;
+        color-scheme: light;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      [hidden] {
+        display: none !important;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        *,
+        *::before,
+        *::after {
+          transition: none !important;
+          animation: none !important;
+        }
+      }
+      body {
+        margin: 0;
+        background: var(--papel);
+        color: var(--tinta);
+        font: 400 1.0625rem/1.6 'Instrument Sans', system-ui, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: 'Familjen Grotesk', system-ui, sans-serif;
+        line-height: 1.08;
+        letter-spacing: -0.02em;
+        margin: 0;
+      }
+      p {
+        margin: 0;
+      }
+      a {
+        color: inherit;
+      }
+      img {
+        max-width: 100%;
+        display: block;
+      }
+      :focus-visible {
+        outline: 3px solid var(--pinho);
+        outline-offset: 3px;
+        border-radius: 6px;
+      }
+      .faixa {
+        width: min(var(--largura), 100% - 2rem);
+        margin-inline: auto;
+      }
+
+      /* ---------- topo ---------- */
+      .topo {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding-block: 1.25rem;
+      }
+      .assinatura {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        font: 700 1.15rem/1 'Familjen Grotesk', sans-serif;
+        text-decoration: none;
+      }
+      .assinatura svg {
+        flex: none;
+      }
+      .topo nav {
+        display: flex;
+        gap: 1.5rem;
+        font-weight: 500;
+      }
+      .topo nav a {
+        text-decoration: none;
+        color: var(--grafite);
+      }
+      .topo nav a:hover {
+        color: var(--tinta);
+      }
+      @media (max-width: 720px) {
+        .topo nav {
+          display: none;
+        }
+      }
+
+      /* ---------- botões ---------- */
+      .botao {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        padding: 0.85rem 1.3rem;
+        border-radius: 999px;
+        border: 0;
+        font: 600 1rem/1 'Instrument Sans', sans-serif;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      .botao--whats {
+        background: var(--pinho);
+        color: var(--branco);
+      }
+      .botao--whats:hover {
+        background: var(--pinho-escuro);
+      }
+      .botao--cheio {
+        background: var(--pinho);
+        color: var(--branco);
+      }
+      .botao--cheio:hover {
+        background: var(--pinho-escuro);
+      }
+      .botao--leve {
+        background: transparent;
+        color: var(--tinta);
+        box-shadow: inset 0 0 0 1.5px var(--linha);
+      }
+      .botao--leve:hover {
+        box-shadow: inset 0 0 0 1.5px var(--tinta);
+      }
+
+      /* ---------- abertura ---------- */
+      .abertura {
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+        gap: clamp(2rem, 5vw, 4.5rem);
+        align-items: center;
+        padding-block: clamp(2rem, 6vw, 4.5rem) clamp(3rem, 8vw, 6rem);
+      }
+      .abertura h1 {
+        font-size: clamp(2.4rem, 5.4vw, 4.1rem);
+        font-weight: 700;
+        max-width: 14ch;
+      }
+      .abertura .apresento {
+        margin-top: 1.4rem;
+        max-width: 46ch;
+        font-size: 1.15rem;
+        color: var(--grafite);
+      }
+      .abertura .acoes {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: 2rem;
+      }
+      @media (max-width: 880px) {
+        .abertura {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* a agenda de demonstração: o elemento marcante da página */
+      .agenda {
+        background: var(--branco);
+        border-radius: 22px;
+        box-shadow: 0 1px 0 var(--linha), 0 24px 48px -28px rgb(20 51 41 / 0.45);
+        padding: 1.4rem 1.4rem 1.2rem;
+      }
+      .agenda__topo {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 1rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--linha);
+      }
+      .agenda__topo h2 {
+        font-size: 1.35rem;
+      }
+      .agenda__topo span {
+        color: var(--grafite);
+        font-size: 0.95rem;
+      }
+      .agenda__lista {
+        list-style: none;
+        margin: 0;
+        padding: 0.4rem 0 0;
+      }
+      .agenda__lista li {
+        display: grid;
+        grid-template-columns: 4.2rem 1fr;
+        align-items: center;
+        min-height: 3.1rem;
+        padding-block: 0.25rem;
+        border-bottom: 1px dashed var(--linha);
+      }
+      .agenda__lista li:last-child {
+        border-bottom: 0;
+      }
+      .agenda__hora {
+        font: 600 1.05rem/1 'Familjen Grotesk', sans-serif;
+        font-variant-numeric: tabular-nums;
+      }
+      .agenda__ocupado {
+        color: var(--grafite);
+        padding: 0.55rem 0.8rem;
+        border-radius: 10px;
+        background: var(--papel-2);
+      }
+      .agenda__ocupado small {
+        display: block;
+        font-size: 0.82rem;
+      }
+      .agenda__livre {
+        width: 100%;
+        min-height: 3.45rem;
+        text-align: left;
+        padding: 0.65rem 0.8rem;
+        border-radius: 10px;
+        border: 1.5px dashed var(--pinho);
+        background: transparent;
+        color: var(--pinho);
+        font: 600 0.98rem/1.2 'Instrument Sans', sans-serif;
+        cursor: pointer;
+      }
+      .agenda__livre:hover {
+        background: rgb(31 75 62 / 0.06);
+      }
+      .agenda__reservado {
+        padding: 0.55rem 0.8rem;
+        border-radius: 10px;
+        background: var(--marca);
+        color: var(--tinta);
+        animation: carimbo 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.3);
+      }
+      .agenda__reservado small {
+        display: block;
+        font-size: 0.82rem;
+      }
+      @keyframes carimbo {
+        from {
+          transform: scale(0.94);
+          opacity: 0.4;
+        }
+      }
+      .agenda__rodape {
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--linha);
+        font-size: 0.95rem;
+        color: var(--grafite);
+        min-height: 4.6rem;
+      }
+      .agenda__rodape a {
+        color: var(--pinho);
+        font-weight: 600;
+      }
+
+      /* ---------- seções ---------- */
+      .secao {
+        padding-block: clamp(3rem, 8vw, 5.5rem);
+        border-top: 1px solid var(--linha);
+      }
+      .secao > .faixa > h2 {
+        font-size: clamp(1.9rem, 3.6vw, 2.7rem);
+        max-width: 22ch;
+      }
+      .secao .intro {
+        margin-top: 0.9rem;
+        max-width: 60ch;
+        color: var(--grafite);
+      }
+
+      /* o que eu faço: linhas, não cartões */
+      .servicos {
+        list-style: none;
+        margin: 2.5rem 0 0;
+        padding: 0;
+      }
+      .servicos li {
+        display: grid;
+        grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.4fr) minmax(0, 0.7fr);
+        gap: 1.5rem;
+        padding-block: 1.6rem;
+        border-top: 1px solid var(--linha);
+      }
+      .servicos h3 {
+        font-size: 1.45rem;
+      }
+      .servicos p {
+        color: var(--grafite);
+        max-width: 58ch;
+      }
+      .servicos .exemplo {
+        font-size: 0.95rem;
+      }
+      .servicos .exemplo a {
+        font-weight: 600;
+        color: var(--pinho);
+      }
+      @media (max-width: 820px) {
+        .servicos li {
+          grid-template-columns: 1fr;
+          gap: 0.5rem;
+        }
+      }
+
+      /* projetos */
+      .projeto {
+        display: grid;
+        grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+        gap: clamp(1.5rem, 4vw, 3.5rem);
+        align-items: center;
+        margin-top: clamp(2.5rem, 6vw, 4.5rem);
+      }
+      .projeto:nth-of-type(even) .projeto__imagem {
+        order: 2;
+      }
+      .projeto__imagem {
+        border-radius: var(--raio);
+        overflow: hidden;
+        background: var(--pinho-escuro);
+        box-shadow: 0 20px 40px -30px rgb(20 51 41 / 0.6);
+      }
+      .projeto__imagem img {
+        width: 100%;
+        height: auto;
+      }
+      .projeto__imagem--estreita {
+        display: grid;
+        place-items: center;
+        padding: 1.5rem;
+        background: #10170f;
+      }
+      .projeto__imagem--estreita img {
+        max-width: 420px;
+        border-radius: 10px;
+      }
+      .projeto h3 {
+        font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+      }
+      .projeto .para {
+        margin-top: 0.4rem;
+        color: var(--pinho);
+        font-weight: 600;
+      }
+      .projeto .resumo {
+        margin-top: 0.9rem;
+        color: var(--grafite);
+      }
+      .projeto ul {
+        margin: 1rem 0 0;
+        padding-left: 1.1rem;
+      }
+      .projeto li + li {
+        margin-top: 0.35rem;
+      }
+      .projeto .tecnologias {
+        margin-top: 1rem;
+        font-size: 0.9rem;
+        color: var(--grafite);
+      }
+      .projeto .links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        margin-top: 1.3rem;
+      }
+      .projeto .links .botao {
+        padding: 0.7rem 1.1rem;
+        font-size: 0.95rem;
+      }
+      @media (max-width: 880px) {
+        .projeto {
+          grid-template-columns: 1fr;
+        }
+        .projeto:nth-of-type(even) .projeto__imagem {
+          order: 0;
+        }
+      }
+
+      /* o fluxo de compras do sistema de estoque, desenhado em vez de print */
+      .fluxo {
+        list-style: none;
+        margin: 0;
+        padding: clamp(1.4rem, 3vw, 2.2rem);
+        display: grid;
+        gap: 0.55rem;
+        background: var(--pinho-escuro);
+        color: #e7efe9;
+      }
+      .fluxo li {
+        display: flex;
+        align-items: center;
+        gap: 0.9rem;
+        padding: 0.8rem 1rem;
+        border-radius: 10px;
+        background: rgb(255 255 255 / 0.06);
+      }
+      .fluxo li span:first-child {
+        font: 700 1.05rem/1 'Familjen Grotesk', sans-serif;
+        min-width: 7.5rem;
+      }
+      .fluxo li span:last-child {
+        font-size: 0.92rem;
+        color: #b8c9bf;
+      }
+      .fluxo li:last-child {
+        background: var(--marca);
+        color: var(--tinta);
+      }
+      .fluxo li:last-child span:last-child {
+        color: #3d4a36;
+      }
+
+      /* como funciona: é uma sequência de verdade, então tem números */
+      .passos {
+        list-style: none;
+        margin: 2.5rem 0 0;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1.5rem;
+        counter-reset: passo;
+      }
+      .passos li {
+        counter-increment: passo;
+        padding-top: 1rem;
+        border-top: 3px solid var(--pinho);
+      }
+      .passos li::before {
+        content: counter(passo);
+        display: block;
+        font: 700 2.4rem/1 'Familjen Grotesk', sans-serif;
+        color: var(--pinho);
+        margin-bottom: 0.6rem;
+      }
+      .passos h3 {
+        font-size: 1.25rem;
+      }
+      .passos p {
+        margin-top: 0.4rem;
+        color: var(--grafite);
+        font-size: 0.98rem;
+      }
+      @media (max-width: 880px) {
+        .passos {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+      @media (max-width: 520px) {
+        .passos {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* sobre */
+      .sobre {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: clamp(1.5rem, 5vw, 4rem);
+      }
+      .sobre h2 {
+        font-size: clamp(1.9rem, 3.6vw, 2.7rem);
+      }
+      .sobre p + p {
+        margin-top: 1rem;
+      }
+      .sobre .texto {
+        color: var(--grafite);
+        max-width: 58ch;
+      }
+      .sobre dl {
+        margin: 0;
+        display: grid;
+        gap: 1rem;
+      }
+      .sobre dt {
+        font-weight: 600;
+      }
+      .sobre dd {
+        margin: 0.15rem 0 0;
+        color: var(--grafite);
+      }
+      @media (max-width: 820px) {
+        .sobre {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* contato */
+      .contato {
+        background: var(--pinho);
+        color: var(--branco);
+        border-top: 0;
+      }
+      .contato h2 {
+        font-size: clamp(2rem, 4.4vw, 3.2rem);
+        max-width: 18ch;
+      }
+      .contato .intro {
+        color: #cfe0d6;
+      }
+      .contato .acoes {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: 2rem;
+      }
+      .contato .botao--whats {
+        background: var(--marca);
+        color: var(--tinta);
+      }
+      .contato .botao--whats:hover {
+        background: #ffe27a;
+      }
+      .contato .botao--leve {
+        color: var(--branco);
+        box-shadow: inset 0 0 0 1.5px rgb(255 255 255 / 0.4);
+      }
+      .contato .botao--leve:hover {
+        box-shadow: inset 0 0 0 1.5px var(--branco);
+      }
+
+      .rodape {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 1rem;
+        padding-block: 1.6rem;
+        font-size: 0.92rem;
+        color: var(--grafite);
+      }
+      .rodape nav {
+        display: flex;
+        gap: 1.2rem;
+      }
+      .sr {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="faixa topo">
+      <a class="assinatura" href="#inicio" aria-label="Cauan Silva, início">
+        <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true">
+          <rect width="30" height="30" rx="8" fill="#1f4b3e" />
+          <path d="M8 11h14M8 15h14M8 19h8" stroke="#fdfefc" stroke-width="2" stroke-linecap="round" />
+          <rect x="18" y="17" width="5" height="5" rx="1.2" fill="#ffd84d" />
+        </svg>
+        Cauan Silva
+      </a>
+      <nav aria-label="Seções">
+        <a href="#servicos">O que eu faço</a>
+        <a href="#projetos">Projetos</a>
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#contato">Contato</a>
+      </nav>
+    </header>
+
+    <main id="inicio">
+      <section class="faixa abertura" aria-labelledby="titulo">
+        <div>
+          <h1 id="titulo">Sistemas que tiram o seu negócio do caderno.</h1>
+          <p class="apresento">
+            Sou o Cauan, desenvolvedor em Santa Catarina. Faço agendamento online, controle de estoque, automações e sites para
+            pequenos negócios, e sistemas sob medida para o que você precisar.
+          </p>
+          <div class="acoes">
+            <a class="botao botao--whats" data-whatsapp="Oi, Cauan! Vi o seu site e quero conversar sobre um sistema para o meu negócio." href="#contato">
+              <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3a.4.4 0 0 0 0-.4L9.5 7.9c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3Z" /></svg>
+              Conversar no WhatsApp
+            </a>
+            <a class="botao botao--leve" href="#projetos">Ver projetos</a>
+          </div>
+        </div>
+
+        <div class="agenda" aria-labelledby="agenda-titulo">
+          <div class="agenda__topo">
+            <h2 id="agenda-titulo">Barbearia Central</h2>
+            <span>Quinta, 14h às 17h</span>
+          </div>
+          <ul class="agenda__lista" id="agenda">
+            <li><span class="agenda__hora">14:00</span><div class="agenda__ocupado">Corte + barba<small>Marcos, com Ana</small></div></li>
+            <li><span class="agenda__hora">14:40</span><button class="agenda__livre" type="button">Livre, reservar este horário</button></li>
+            <li><span class="agenda__hora">15:20</span><div class="agenda__ocupado">Corte<small>Felipe, com Ana</small></div></li>
+            <li><span class="agenda__hora">16:00</span><button class="agenda__livre" type="button">Livre, reservar este horário</button></li>
+            <li><span class="agenda__hora">16:40</span><div class="agenda__ocupado">Barba<small>Diego, com Ana</small></div></li>
+          </ul>
+          <p class="agenda__rodape" id="agenda-aviso" aria-live="polite">
+            Experimente: escolha um horário livre, como o seu cliente faria pelo celular.
+          </p>
+        </div>
+      </section>
+
+      <section class="secao" id="servicos" aria-labelledby="servicos-titulo">
+        <div class="faixa">
+          <h2 id="servicos-titulo">O que eu faço</h2>
+          <p class="intro">Do sistema que já está pronto e só precisa da cara do seu negócio até o que ainda não existe.</p>
+          <ul class="servicos">
+            <li>
+              <h3>Sistemas prontos</h3>
+              <p>
+                Agendamento online para barbearia, salão e clínica: o cliente marca sozinho, sem horário duplicado, e você vê a agenda do
+                dia e o faturamento do mês. Controle de estoque e compras para quem compra e revende, com sugestão do que repor.
+              </p>
+              <p class="exemplo">Veja o <a href="#agendamento">Agendamento</a> e o <a href="#estoque">Estoque</a>.</p>
+            </li>
+            <li>
+              <h3>Sistemas sob medida</h3>
+              <p>
+                Feito do zero, do jeito que o seu processo funciona hoje: no navegador, como programa para Windows ou como app Android.
+                Com login para cada pessoa da equipe e os seus dados guardados com segurança.
+              </p>
+              <p class="exemplo">Veja o <a href="#prosa">Prosa</a> e o <a href="#vybe">VYBE</a>.</p>
+            </li>
+            <li>
+              <h3>Automação e dados</h3>
+              <p>
+                Planilhas que se preenchem sozinhas, relatórios prontos todo mês e painéis com os números do negócio. Aquela tarefa que
+                alguém faz à mão toda semana vira um clique.
+              </p>
+              <p class="exemplo">Python, SQL e Excel.</p>
+            </li>
+            <li>
+              <h3>Sites e lojas</h3>
+              <p>
+                Um site rápido para o seu negócio aparecer no Google e receber clientes pelo WhatsApp, ou uma loja para vender online.
+                Funciona bem no celular, que é de onde vem quase todo mundo.
+              </p>
+              <p class="exemplo">Como este aqui.</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="secao" id="projetos" aria-labelledby="projetos-titulo">
+        <div class="faixa">
+          <h2 id="projetos-titulo">Projetos que fiz do zero</h2>
+          <p class="intro">Todos com o código aberto no GitHub, e os que têm versão online você pode abrir e usar agora.</p>
+
+          <article class="projeto" id="agendamento">
+            <div class="projeto__imagem projeto__imagem--estreita">
+              <img src="imagens/agendamento.webp" alt="Comprovante de horário reservado na Barbearia Central: 09:30, corte e barba" width="850" height="760" loading="lazy" />
+            </div>
+            <div>
+              <h3>Agendamento</h3>
+              <p class="para">Para barbearias, salões e clínicas</p>
+              <p class="resumo">O cliente vê só os horários realmente livres e marca em poucos cliques. A equipe tem um painel com a agenda do dia.</p>
+              <ul>
+                <li>Nunca dois clientes no mesmo horário</li>
+                <li>Confirmação por e-mail, lembrete na véspera e atalho para o WhatsApp do cliente</li>
+                <li>Cliente remarca ou cancela pelo link, sem precisar ligar</li>
+                <li>Relatório do mês com faturamento e desempenho de cada profissional</li>
+              </ul>
+              <p class="tecnologias">Java, Spring Boot, React e PostgreSQL</p>
+              <div class="links">
+                <a class="botao botao--leve" href="https://github.com/Cauan-Silva/agendamento">Ver o código</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="projeto" id="estoque">
+            <div class="projeto__imagem">
+              <ol class="fluxo" aria-label="O caminho de uma compra no sistema">
+                <li><span>Solicitação</span><span>alguém da equipe pede o material</span></li>
+                <li><span>Cotação</span><span>orçamentos de fornecedores, lidos com IA</span></li>
+                <li><span>Aprovação</span><span>quem tem permissão aprova o melhor preço</span></li>
+                <li><span>Pedido</span><span>vai para o fornecedor com a nota anexada</span></li>
+                <li><span>Recebimento</span><span>o material entra no estoque sozinho</span></li>
+              </ol>
+            </div>
+            <div>
+              <h3>Estoque e Compras</h3>
+              <p class="para">Para quem compra, guarda e revende</p>
+              <p class="resumo">Controla o estoque e todo o caminho de uma compra, do pedido da equipe até o material chegar.</p>
+              <ul>
+                <li>Sugestão de compra pelo estoque mínimo, consumo e prazo de entrega</li>
+                <li>Leitura de orçamentos recebidos com inteligência artificial</li>
+                <li>Histórico de preços de cada produto e exportação para Excel e PDF</li>
+                <li>Cada pessoa vê e aprova só o que pode</li>
+              </ul>
+              <p class="tecnologias">Python, FastAPI e PostgreSQL</p>
+              <div class="links">
+                <a class="botao botao--leve" href="https://github.com/Cauan-Silva/sistema-estoque">Ver o código</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="projeto" id="prosa">
+            <div class="projeto__imagem">
+              <img src="imagens/prosa.webp" alt="Canal de conversa do Prosa com mensagens, reações e uma enquete" width="1400" height="831" loading="lazy" />
+            </div>
+            <div>
+              <h3>Prosa</h3>
+              <p class="para">Conversa em tempo real, no estilo do Discord</p>
+              <p class="resumo">Servidores com canais de texto e de voz, mensagens diretas, enquetes e chamadas com vídeo e tela compartilhada.</p>
+              <ul>
+                <li>Voz, câmera e tela em até 1080p e 60 fps</li>
+                <li>Cargos e permissões por canal, moderação e convites</li>
+                <li>Supressão de ruído com inteligência artificial</li>
+                <li>Programa para Windows com instalador</li>
+              </ul>
+              <p class="tecnologias">Go, React, WebRTC, PostgreSQL e Redis</p>
+              <div class="links">
+                <a class="botao botao--cheio" href="https://prosa-s4u4.onrender.com">Abrir o Prosa</a>
+                <a class="botao botao--leve" href="https://github.com/Cauan-Silva/prosa">Ver o código</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="projeto" id="vybe">
+            <div class="projeto__imagem">
+              <img src="imagens/vybe.webp" alt="Tela Seu mês no VYBE, com tempo ouvido, músicas, horário favorito e gráfico do mês" width="1400" height="676" loading="lazy" />
+            </div>
+            <div>
+              <h3>VYBE</h3>
+              <p class="para">Música e vídeos no estilo do Spotify</p>
+              <p class="resumo">Suas músicas, faixas livres, Spotify e YouTube num player só, com programa para Windows e app Android.</p>
+              <ul>
+                <li>Resumo do mês com gráficos do que foi ouvido e assistido</li>
+                <li>Programa para Windows que se atualiza sozinho</li>
+                <li>App Android que toca com a tela apagada</li>
+              </ul>
+              <p class="tecnologias">Java, Spring Boot, React, Electron e Android</p>
+              <div class="links">
+                <a class="botao botao--cheio" href="https://github.com/Cauan-Silva/vybe/releases/latest">Baixar o VYBE</a>
+                <a class="botao botao--leve" href="https://github.com/Cauan-Silva/vybe">Ver o código</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="projeto" id="estuda-junto">
+            <div class="projeto__imagem">
+              <img src="imagens/estuda-junto.webp" alt="Página inicial do Estuda Junto com o tempo de estudo da semana e as salas abertas" width="1360" height="900" loading="lazy" />
+            </div>
+            <div>
+              <h3>Estuda Junto</h3>
+              <p class="para">Salas de estudo online</p>
+              <p class="resumo">Um relógio Pomodoro igual para toda a sala, chat, tarefas da turma, chamada de vídeo e ranking de quem mais estudou.</p>
+              <ul>
+                <li>Todos veem o mesmo relógio, ao vivo</li>
+                <li>Tempo de estudo contado, com sequência de dias e ranking</li>
+                <li>Chamada de vídeo com tela compartilhada</li>
+              </ul>
+              <p class="tecnologias">Go, React, WebSocket e WebRTC</p>
+              <div class="links">
+                <a class="botao botao--cheio" href="https://estuda-junto-0wi3.onrender.com">Abrir o Estuda Junto</a>
+                <a class="botao botao--leve" href="https://github.com/Cauan-Silva/estuda-junto">Ver o código</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="secao" id="como-funciona" aria-labelledby="passos-titulo">
+        <div class="faixa">
+          <h2 id="passos-titulo">Como funciona</h2>
+          <p class="intro">Você não precisa entender de tecnologia. Precisa só me contar como o seu negócio funciona.</p>
+          <ol class="passos">
+            <li>
+              <h3>Conversa</h3>
+              <p>Você me conta o que faz hoje e o que dá trabalho. Sem custo e sem compromisso.</p>
+            </li>
+            <li>
+              <h3>Proposta</h3>
+              <p>Mando por escrito o que vai ser feito, em quanto tempo e quanto custa.</p>
+            </li>
+            <li>
+              <h3>Desenvolvimento</h3>
+              <p>Você testa versões ao longo do caminho e pede ajustes antes da entrega.</p>
+            </li>
+            <li>
+              <h3>Entrega e suporte</h3>
+              <p>Coloco no ar, ensino a equipe a usar e acompanho os primeiros dias.</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="secao" aria-labelledby="sobre-titulo">
+        <div class="faixa sobre">
+          <div>
+            <h2 id="sobre-titulo">Quem vai fazer</h2>
+            <div class="texto">
+              <p style="margin-top: 1rem">
+                Sou o Cauan Silva, estudante de Engenharia da Computação em Santa Catarina. Gosto de construir o sistema inteiro: o banco
+                de dados, o servidor, as telas e o lugar onde ele fica no ar.
+              </p>
+              <p>Também trabalho com dados: tratamento de planilhas, relatórios e automações em Python.</p>
+            </div>
+          </div>
+          <dl>
+            <div>
+              <dt>Atendimento</dt>
+              <dd>Online, para todo o Brasil, direto comigo do começo ao fim</dd>
+            </div>
+            <div>
+              <dt>Onde fica no ar</dt>
+              <dd>Na internet, no computador da empresa ou no celular, o que fizer mais sentido para você</dd>
+            </div>
+            <div>
+              <dt>Tecnologias</dt>
+              <dd>Java, Python, Go, JavaScript, React, PostgreSQL e Docker</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="secao contato" id="contato" aria-labelledby="contato-titulo">
+        <div class="faixa">
+          <h2 id="contato-titulo">Me conta o que você precisa.</h2>
+          <p class="intro">Respondo com uma ideia de como resolver e quanto tempo leva.</p>
+          <div class="acoes">
+            <a class="botao botao--whats" data-whatsapp="Oi, Cauan! Vi o seu site e quero conversar sobre um projeto." href="#contato">Conversar no WhatsApp</a>
+            <a class="botao botao--leve" data-email href="#contato">Mandar um e-mail</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="faixa rodape">
+      <span>Cauan Silva, Santa Catarina</span>
+      <nav aria-label="Redes">
+        <a href="https://github.com/Cauan-Silva">GitHub</a>
+        <a href="https://www.linkedin.com/in/cauan-da-silva-dos-santos-b9649a267/">LinkedIn</a>
+      </nav>
+    </footer>
+
+    <script>
+      // Contatos: os botões só viram link quando o número e o e-mail estão preenchidos lá em cima.
+      const numero = (CONTATO.whatsapp || '').replace(/\D/g, '')
+      for (const a of document.querySelectorAll('[data-whatsapp]')) {
+        if (numero) {
+          a.href = `https://wa.me/${numero}?text=${encodeURIComponent(a.dataset.whatsapp)}`
+          a.target = '_blank'
+          a.rel = 'noopener'
+        }
+      }
+      for (const a of document.querySelectorAll('[data-email]')) {
+        if (CONTATO.email) a.href = `mailto:${CONTATO.email}?subject=${encodeURIComponent('Projeto pelo site')}`
+        else a.hidden = true
+      }
+
+      // A agenda da abertura: reservar um horário livre, como no sistema de agendamento.
+      const aviso = document.getElementById('agenda-aviso')
+      document.getElementById('agenda').addEventListener('click', (e) => {
+        const botao = e.target.closest('.agenda__livre')
+        if (!botao) return
+        const hora = botao.parentElement.querySelector('.agenda__hora').textContent
+        const reservado = document.createElement('div')
+        reservado.className = 'agenda__reservado'
+        reservado.innerHTML = '<strong>Reservado para você</strong><small>Corte, com Ana</small>'
+        botao.replaceWith(reservado)
+        const texto = `Oi, Cauan! Testei a agenda do seu site e quero um agendamento online para o meu negócio.`
+        const link = numero ? `https://wa.me/${numero}?text=${encodeURIComponent(texto)}` : '#contato'
+        aviso.innerHTML = `Pronto, ${hora} é seu. Esse horário sumiu para todo mundo e entrou na agenda da barbearia. <a href="${link}"${numero ? ' target="_blank" rel="noopener"' : ''}>Quero isso no meu negócio</a>`
+      })
+    </script>
+  </body>
+</html>
