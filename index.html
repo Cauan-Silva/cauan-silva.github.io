@@ -821,6 +821,215 @@
         }
       }
 
+      /* ================= animações =================
+         Só valem com a classe "anima" no <html>, que o script põe quando a pessoa não
+         pediu para reduzir movimento. Sem JavaScript, tudo aparece parado e completo. */
+      :root {
+        interpolate-size: allow-keywords;
+      }
+      .luz {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        background: radial-gradient(520px circle at var(--mx, 70%) var(--my, 20%), rgb(43 79 216 / 0.22), transparent 70%);
+      }
+      .anima .abertura h1 .palavra {
+        display: inline-block;
+        opacity: 0;
+        transform: translateY(0.5em);
+        animation: subir 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+        animation-delay: calc(var(--i) * 70ms + 100ms);
+      }
+      .anima .abertura .apresento,
+      .anima .abertura .acoes {
+        opacity: 0;
+        animation: subir 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+      }
+      .anima .abertura .apresento {
+        animation-delay: 0.6s;
+      }
+      .anima .abertura .acoes {
+        animation-delay: 0.75s;
+      }
+      .anima .abertura .agenda {
+        opacity: 0;
+        animation: chegar 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) 0.35s forwards;
+      }
+      .anima .agenda__lista li {
+        opacity: 0;
+        animation: subir 0.5s ease-out forwards;
+        animation-delay: calc(var(--i) * 90ms + 0.7s);
+      }
+      @keyframes subir {
+        from {
+          opacity: 0;
+          transform: translateY(18px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      @keyframes chegar {
+        from {
+          opacity: 0;
+          transform: translateY(30px) rotate(1.5deg) scale(0.97);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      .anima .revelar {
+        opacity: 0;
+        transform: translateY(22px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+        transition-delay: calc(var(--i, 0) * 90ms);
+      }
+      .anima .revelar.visivel {
+        opacity: 1;
+        transform: none;
+      }
+      .anima .projeto.revelar .projeto__imagem {
+        transform: translateY(30px) scale(0.97);
+        transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) 0.1s;
+      }
+      .anima .projeto.revelar.visivel .projeto__imagem {
+        transform: none;
+      }
+      .anima .passos li {
+        border-top-color: transparent;
+        position: relative;
+      }
+      .anima .passos li::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: -3px;
+        height: 3px;
+        background: var(--pinho);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.8s cubic-bezier(0.6, 0, 0.2, 1);
+        transition-delay: calc(var(--i, 0) * 220ms + 0.15s);
+      }
+      .anima .passos li.visivel::after {
+        transform: scaleX(1);
+      }
+      .barra-topo::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -1px;
+        height: 2px;
+        width: 100%;
+        background: var(--marca);
+        transform: scaleX(var(--progresso, 0));
+        transform-origin: left;
+      }
+      .anima .fluxo li {
+        transition:
+          background 0.4s ease,
+          color 0.4s ease,
+          transform 0.4s ease;
+      }
+      .anima .fluxo li:last-child {
+        background: rgb(255 255 255 / 0.06);
+        color: inherit;
+      }
+      .anima .fluxo li:last-child span:last-child {
+        color: #b3c0dd;
+      }
+      .anima .fluxo li.feito {
+        background: rgb(141 184 255 / 0.14);
+      }
+      .anima .fluxo li.agora {
+        background: var(--marca);
+        color: var(--tinta-escura);
+        transform: translateX(6px);
+      }
+      .anima .fluxo li.agora span:last-child {
+        color: #4a4220;
+      }
+      .botao {
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease,
+          background 0.2s ease;
+      }
+      .botao:hover {
+        transform: translateY(-2px);
+      }
+      .botao--whats:hover,
+      .botao--cheio:hover {
+        box-shadow: 0 10px 28px -10px rgb(255 216 77 / 0.65);
+      }
+      .botao:active {
+        transform: translateY(0) scale(0.98);
+      }
+      .projeto__imagem {
+        transition:
+          transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1),
+          box-shadow 0.4s ease;
+      }
+      .projeto__imagem img,
+      .projeto__imagem video {
+        transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+      }
+      .anima .projeto.visivel .projeto__imagem:hover {
+        transform: translateY(-6px);
+        box-shadow: inset 0 0 0 1px var(--linha), 0 34px 60px -30px rgb(43 79 216 / 0.7);
+      }
+      .projeto__imagem:hover img,
+      .projeto__imagem:hover video {
+        transform: scale(1.025);
+      }
+      .agenda__livre {
+        transition:
+          background 0.2s ease,
+          transform 0.2s ease;
+      }
+      .agenda__livre:hover {
+        transform: translateX(4px);
+      }
+      .duvidas details::details-content {
+        height: 0;
+        overflow: clip;
+        transition:
+          height 0.35s ease,
+          content-visibility 0.35s allow-discrete;
+      }
+      .duvidas details[open]::details-content {
+        height: auto;
+      }
+      .anima .opcoes input:checked + span {
+        animation: estalo 0.3s cubic-bezier(0.3, 1.6, 0.5, 1);
+      }
+      @keyframes estalo {
+        50% {
+          transform: scale(1.08);
+        }
+      }
+      .opcoes span {
+        transition:
+          background 0.2s ease,
+          color 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+      .previa.mudou {
+        animation: balao 0.35s cubic-bezier(0.3, 1.4, 0.5, 1);
+      }
+      @keyframes balao {
+        from {
+          transform: scale(0.97);
+          opacity: 0.7;
+        }
+      }
+
       .sr {
         position: absolute;
         width: 1px;
@@ -832,6 +1041,7 @@
     </style>
   </head>
   <body>
+    <div class="luz" aria-hidden="true"></div>
     <header class="barra-topo" id="barra-topo">
       <div class="faixa topo">
       <a class="assinatura" href="#inicio" aria-label="Cauan Silva, início">
@@ -1317,6 +1527,96 @@
       pedido.addEventListener('input', montarPedido)
       pedido.addEventListener('submit', (e) => e.preventDefault())
       montarPedido()
+
+      // ===== animações (só para quem não pediu para reduzir movimento) =====
+      if (!calmo) {
+        document.documentElement.classList.add('anima')
+
+        // título: cada palavra sobe na entrada
+        const h1 = document.querySelector('.abertura h1')
+        h1.innerHTML = h1.textContent
+          .split(' ')
+          .map((p, i) => `<span class="palavra" style="--i:${i}">${p}</span>`)
+          .join(' ')
+        document.querySelectorAll('.agenda__lista li').forEach((li, i) => li.style.setProperty('--i', i))
+
+        // luz que acompanha o mouse
+        const luz = document.querySelector('.luz')
+        addEventListener(
+          'pointermove',
+          (e) => {
+            luz.style.setProperty('--mx', `${e.clientX}px`)
+            luz.style.setProperty('--my', `${e.clientY}px`)
+          },
+          { passive: true },
+        )
+
+        // seções e listas aparecem ao rolar
+        const grupos = [
+          ['.secao > .faixa > h2, .secao .intro', false],
+          ['.servicos li', true],
+          ['.projeto', false],
+          ['.passos li', true],
+          ['.duvidas details', true],
+          ['.sobre > *', true],
+          ['.pedido > *', true],
+        ]
+        const obsRevelar = new IntersectionObserver(
+          (entradas) => {
+            for (const e of entradas) {
+              if (!e.isIntersecting) continue
+              e.target.classList.add('visivel')
+              obsRevelar.unobserve(e.target)
+            }
+          },
+          { threshold: 0.15, rootMargin: '0px 0px -40px 0px' },
+        )
+        for (const [seletor, emSequencia] of grupos) {
+          document.querySelectorAll(seletor).forEach((el) => {
+            el.classList.add('revelar')
+            if (emSequencia) el.style.setProperty('--i', [...el.parentElement.children].indexOf(el))
+            obsRevelar.observe(el)
+          })
+        }
+
+        // fluxo de compras: a etapa atual anda enquanto o quadro está na tela
+        const etapas = [...document.querySelectorAll('.fluxo li')]
+        let etapa = -1
+        let timerFluxo = null
+        const andar = () => {
+          etapa = (etapa + 1) % (etapas.length + 2) // duas batidas paradas no fim
+          etapas.forEach((li, i) => {
+            li.classList.toggle('agora', i === etapa)
+            li.classList.toggle('feito', i < etapa)
+          })
+        }
+        new IntersectionObserver((entradas) => {
+          if (entradas[0].isIntersecting && !timerFluxo) {
+            andar()
+            timerFluxo = setInterval(andar, 1300)
+          } else if (!entradas[0].isIntersecting && timerFluxo) {
+            clearInterval(timerFluxo)
+            timerFluxo = null
+          }
+        }).observe(document.querySelector('.fluxo'))
+
+        // a prévia da mensagem dá um pulinho quando muda
+        const previa = document.querySelector('.previa')
+        pedido.addEventListener('input', () => {
+          previa.classList.remove('mudou')
+          void previa.offsetWidth
+          previa.classList.add('mudou')
+        })
+      }
+
+      // barra de progresso da leitura
+      const progresso = () => {
+        const total = document.documentElement.scrollHeight - innerHeight
+        barra.style.setProperty('--progresso', total > 0 ? Math.min(1, scrollY / total).toFixed(4) : 0)
+      }
+      addEventListener('scroll', progresso, { passive: true })
+      progresso()
+
 
       // Contador de visitas (GoatCounter), só se o código estiver preenchido lá em cima.
       if (CONTADOR) {
